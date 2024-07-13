@@ -2,6 +2,7 @@
 // index.php
 include_once __DIR__ . '/config.php';
 include_once __DIR__ . '/controllers/BodegaController.php';
+include_once __DIR__ . '/controllers/CategoriaController.php'; // Asegúrate de incluir todos los controladores necesarios
 
 $request = $_SERVER['REQUEST_URI'];
 $base_path = '/ProyectoIntegrador';
@@ -11,6 +12,7 @@ if (strpos($request, $base_path) === 0) {
 }
 
 switch (true) {
+    // Rutas para Bodega
     case $request === '/bodega':
         $controller = new BodegaController($pdo);
         $controller->index();
@@ -31,6 +33,25 @@ switch (true) {
         $controller = new BodegaController($pdo);
         $controller->show($matches[1]);
         break;
+        
+    // Rutas para Categoria
+    case $request === '/categoria':
+        $controller = new CategoriaController($pdo);
+        $controller->index();
+        break;
+    case $request === '/categoria/create':
+        $controller = new CategoriaController($pdo);
+        $controller->create();
+        break;
+    case preg_match('#^/categoria/edit/(\d+)$#', $request, $matches):
+        $controller = new CategoriaController($pdo);
+        $controller->edit($matches[1]);
+        break;
+    case preg_match('#^/categoria/delete/(\d+)$#', $request, $matches):
+        $controller = new CategoriaController($pdo);
+        $controller->delete($matches[1]);
+        break;
+        
     default:
         http_response_code(404);
         echo 'Page not found';
