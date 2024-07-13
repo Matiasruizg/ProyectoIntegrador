@@ -1,4 +1,4 @@
-<!-- views/bodega/show.php -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,6 @@
     <p>Product ID: <?= $bodega['prod_id'] ?></p>
     <p>Stock: <?= $bodega['prod_stock'] ?></p>
     <p>Sucursal ID: <?= $bodega['suc_id'] ?></p>
-    <a href="/ProyectoIntegrador/bodega">Back to List</a>
+    <a href="/bodega">Back to List</a>
 </body>
 </html>

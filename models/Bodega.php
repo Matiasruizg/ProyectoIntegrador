@@ -1,6 +1,5 @@
 <?php
-// models/Bodega.php
-include_once __DIR__ . '/../config.php';
+include_once 'config.php';
 
 class Bodega {
     private $pdo;
@@ -26,7 +25,7 @@ class Bodega {
     }
 
     public function update($id, $data) {
-        $stmt = $->prepare('UPDATE bodega SET prod_id = ?, prod_stock = ?, suc_id = ? WHERE bod_id = ?');
+        $stmt = $this->pdo->prepare('UPDATE bodega SET prod_id = ?, prod_stock = ?, suc_id = ? WHERE bod_id = ?');
         return $stmt->execute([$data['prod_id'], $data['prod_stock'], $data['suc_id'], $id]);
     }
 

@@ -1,4 +1,4 @@
-<!-- views/bodega/edit.php -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Edit Bodega</h1>
-    <form action="/ProyectoIntegrador/bodega/edit/<?= $bodega['bod_id'] ?>" method="post">
+    <form action="/bodega/edit/<?= $bodega['bod_id'] ?>" method="post">
         <label for="prod_id">Product ID:</label>
         <input type="text" name="prod_id" id="prod_id" value="<?= $bodega['prod_id'] ?>">
         <br>

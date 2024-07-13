@@ -1,4 +1,4 @@
-<!-- views/bodega/create.php -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Create Bodega</h1>
-    <form action="/ProyectoIntegrador/bodega/create" method="post">
+    <form action="/bodega/create" method="post">
         <label for="prod_id">Product ID:</label>
         <input type="text" name="prod_id" id="prod_id">
         <br>

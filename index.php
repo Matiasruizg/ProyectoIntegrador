@@ -1,34 +1,29 @@
 <?php
 // index.php
-include_once __DIR__ . '/config.php';
-include_once __DIR__ . '/controllers/BodegaController.php';
+include_once 'config.php';
+include_once 'controllers/BodegaController.php';
 
-$request = $_SERVER['REQUEST_URI'];
-$base_path = '/ProyectoIntegrador';
+$controller = new BodegaController($pdo);
 
-if (strpos($request, $base_path) === 0) {
-    $request = substr($request, strlen($base_path));
-}
+$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-switch (true) {
-    case $request === '/bodega':
-        $controller = new BodegaController($pdo);
+switch ($request) {
+    case '/':
+        echo "Bienvenido a la aplicación CRUD.";
+        break;
+    case '/bodega':
         $controller->index();
         break;
-    case $request === '/bodega/create':
-        $controller = new BodegaController($pdo);
+    case '/bodega/create':
         $controller->create();
         break;
-    case preg_match('#^/bodega/edit/(\d+)$#', $request, $matches):
-        $controller = new BodegaController($pdo);
+    case (preg_match('/\/bodega\/edit\/(\d+)/', $request, $matches) ? true : false):
         $controller->edit($matches[1]);
         break;
-    case preg_match('#^/bodega/delete/(\d+)$#', $request, $matches):
-        $controller = new BodegaController($pdo);
+    case (preg_match('/\/bodega\/delete\/(\d+)/', $request, $matches) ? true : false):
         $controller->delete($matches[1]);
         break;
-    case preg_match('#^/bodega/show/(\d+)$#', $request, $matches):
-        $controller = new BodegaController($pdo);
+    case (preg_match('/\/bodega\/show\/(\d+)/', $request, $matches) ? true : false):
         $controller->show($matches[1]);
         break;
     default:
